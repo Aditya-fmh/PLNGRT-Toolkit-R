@@ -37,49 +37,49 @@ class CheckingInterface(ScrollArea):
         self.checkingGroup = SettingCardGroup(self.tr('Checking Software'), self.scrollWidget)
         self.batteryCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.POWER_BUTTON,
             self.tr('Battery Info View'),
             self.tr('Check battery condition i.e Battery Health and Battery Capacity'),
             self.checkingGroup
         )
         self.cpuzCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.IOT,
             self.tr('CPU-Z'),
             self.tr('Check PC/Laptop detailed specification'),
             self.checkingGroup
         )
         self.crystalCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.ALBUM,
             self.tr('Crystal Disk Info'),
             self.tr('Check SSD condition like health, lifetime write and other parameter'),
             self.checkingGroup
         )
         self.gpuzCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.ZOOM,
             self.tr('GPU-Z'),
             self.tr('Check GPU detailed specification'),
             self.checkingGroup
         )
         self.sentinelCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.PIE_SINGLE,
             self.tr('HD Sentinel'),
             self.tr('Check SSD/HDD Condition like performance, health, lifetme write/start and stop count'),
             self.checkingGroup
         )
         self.hwmCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.INFO,
             self.tr('HWMonitor'),
             self.tr('Check detailed specification'),
             self.checkingGroup
         )
         self.speccyCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.SEARCH_MIRROR,
             self.tr('Speccy'),
             self.tr('Another app to check specification'),
             self.checkingGroup
@@ -90,28 +90,28 @@ class CheckingInterface(ScrollArea):
         self.chkwebGroup = SettingCardGroup(self.tr('Checking Web'), self.scrollWidget)
         self.keyCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.TILES,
             self.tr('Keyboard Test'),
             self.tr('Test Keyboard Functionality'),
             self.chkwebGroup
         )
         self.lcdCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.CONNECT,
             self.tr('LCD Test'),
             self.tr('Check LCD for Black Spot or White Spot or any other error'),
             self.chkwebGroup
         )
         self.micCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.MICROPHONE,
             self.tr('Microphone Test'),
             self.tr('Test Microphone Functionality'),
             self.chkwebGroup
         )
         self.speakerCard = PrimaryPushSettingCard(
             self.tr('Check'),
-            FIF.COMMAND_PROMPT,
+            FIF.SPEAKERS,
             self.tr('Speaker Test'),
             self.tr('Test Speaker Left & Right Functionality'),
             self.chkwebGroup
