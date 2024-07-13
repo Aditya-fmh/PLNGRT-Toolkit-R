@@ -136,8 +136,8 @@ class ActivatorInterface(ScrollArea):
         subprocess.run([script_path], shell=True)
         
     def runIDM(self):
-        script_path = get_resource_path('resource/script/IAS.cmd')
-        subprocess.run([script_path], shell=True)
+        powershell_command = 'irm https://massgrave.dev/ias | iex'
+        subprocess.run(['powershell', '-Command', powershell_command], shell=True)
     
     def runOfficeAIO(self):
         script_path = get_resource_path('resource/script/aso.cmd')

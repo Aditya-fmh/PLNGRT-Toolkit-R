@@ -9,6 +9,7 @@ from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme,
 from qfluentwidgets import (FluentIcon as FIF, SplashScreen)
 from resource.view.setting_interface import SettingInterface
 from resource.view.activator_interface import ActivatorInterface
+from resource.view.checking_interface import CheckingInterface
 
 class Widget(QFrame):
 
@@ -30,10 +31,14 @@ class Window(MSFluentWindow):
         # create sub interface
         self.activatorInterface = ActivatorInterface(self)
         self.activatorInterface.setObjectName('Activator')
-        self.checkingInterface = Widget('Checking', self)
+        
+        self.checkingInterface = CheckingInterface(self)
+        self.checkingInterface.setObjectName('Checking')
+        
         self.standardInterface = Widget('Standard', self)
         self.driverInterface = Widget('Driver Install', self)
         self.storeInterface = Widget('MS Store', self)
+        
         self.settingInterface = SettingInterface(self)
         self.settingInterface.setObjectName('Setting')
 
@@ -54,13 +59,6 @@ class Window(MSFluentWindow):
         self.resize(900, 700)
         self.setWindowIcon(QIcon('resource/icon2.ico'))
         self.setWindowTitle('PLNGRT Toolkit R')
-
-        # create splash screen and show window
-        self.splashScreen = SplashScreen(self.windowIcon(), self)
-        self.splashScreen.setIconSize(QSize(128, 128))
-        self.show()
-        self.createSubInterface()
-        self.splashScreen.finish()
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
