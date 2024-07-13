@@ -7,7 +7,8 @@ from PyQt5.QtWidgets import QApplication, QFrame, QHBoxLayout
 from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, MSFluentWindow,
                             SubtitleLabel, setFont)
 from qfluentwidgets import (FluentIcon as FIF, SplashScreen)
-from setting_interface import SettingInterface
+from resource.view.setting_interface import SettingInterface
+from resource.view.activator_interface import ActivatorInterface
 
 class Widget(QFrame):
 
@@ -27,7 +28,8 @@ class Window(MSFluentWindow):
         super().__init__()
 
         # create sub interface
-        self.activatorInterface = Widget('Activator', self)
+        self.activatorInterface = ActivatorInterface(self)
+        self.activatorInterface.setObjectName('Activator')
         self.checkingInterface = Widget('Checking', self)
         self.standardInterface = Widget('Standard', self)
         self.driverInterface = Widget('Driver Install', self)
@@ -51,11 +53,11 @@ class Window(MSFluentWindow):
     def initWindow(self):
         self.resize(900, 700)
         self.setWindowIcon(QIcon('resource/icon2.ico'))
-        self.setWindowTitle('PLNGRT Toolkit Reboot')
+        self.setWindowTitle('PLNGRT Toolkit R')
 
         # create splash screen and show window
         self.splashScreen = SplashScreen(self.windowIcon(), self)
-        self.splashScreen.setIconSize(QSize(102, 102))
+        self.splashScreen.setIconSize(QSize(128, 128))
         self.show()
         self.createSubInterface()
         self.splashScreen.finish()

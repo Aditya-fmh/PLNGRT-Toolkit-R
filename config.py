@@ -111,8 +111,8 @@ class Config(QConfig):
 YEAR = 2024
 AUTHOR = "Aditya F."
 VERSION = __version__
-CODE_URL = "https://github.com/Aditya-fmh"
-FEEDBACK_URL = "https://github.com/Aditya-fmh"
+CODE_URL = "https://github.com/Aditya-fmh/PLNGRT-Toolkit-R"
+FEEDBACK_URL = "https://github.com/Aditya-fmh/PLNGRT-Toolkit-R/issues"
 RELEASE_URL = "https://github.com/Aditya-fmh"
 
 

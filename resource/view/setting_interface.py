@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
 import os
 import sys
 
+# Fix dark mode not working when exported to .exe
 def get_resource_path(relative_path):
     """ Get the absolute path to the resource, works for dev and for PyInstaller """
     try:
@@ -82,7 +83,7 @@ class SettingInterface(ScrollArea):
             self.tr('Provide feedback'),
             FIF.FEEDBACK,
             self.tr('Provide feedback'),
-            self.tr('Help us me improve this app by providing feedback'),
+            self.tr('Help me improve this app by providing feedback'),
             self.aboutGroup
         )
         self.aboutCard = PrimaryPushSettingCard(
@@ -147,23 +148,6 @@ class SettingInterface(ScrollArea):
             self.tr('Configuration takes effect after restart'),
             parent=self.window()
         )
-
-    def __onDeskLyricFontCardClicked(self):
-        """ desktop lyric font button clicked slot """
-        font, isOk = QFontDialog.getFont(
-            cfg.desktopLyricFont, self.window(), self.tr("Choose font"))
-        if isOk:
-            cfg.desktopLyricFont = font
-
-    def __onDownloadFolderCardClicked(self):
-        """ download folder card clicked slot """
-        folder = QFileDialog.getExistingDirectory(
-            self, self.tr("Choose folder"), "./")
-        if not folder or cfg.get(cfg.downloadFolder) == folder:
-            return
-
-        cfg.set(cfg.downloadFolder, folder)
-        self.downloadFolderCard.setContent(folder)
 
     def __onThemeChanged(self, theme: Theme):
         """ theme changed slot """
