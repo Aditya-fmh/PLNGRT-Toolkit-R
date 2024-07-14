@@ -10,6 +10,7 @@ from qfluentwidgets import (FluentIcon as FIF, SplashScreen)
 from resource.view.setting_interface import SettingInterface
 from resource.view.activator_interface import ActivatorInterface
 from resource.view.checking_interface import CheckingInterface
+from resource.view.standard_interface import StandardInterface
 
 class Widget(QFrame):
 
@@ -35,7 +36,9 @@ class Window(MSFluentWindow):
         self.checkingInterface = CheckingInterface(self)
         self.checkingInterface.setObjectName('Checking')
         
-        self.standardInterface = Widget('Standard', self)
+        self.standardInterface = StandardInterface(self)
+        self.standardInterface.setObjectName('Standard')
+        
         self.driverInterface = Widget('Driver Install', self)
         self.storeInterface = Widget('MS Store', self)
         
