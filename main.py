@@ -11,6 +11,8 @@ from resource.view.setting_interface import SettingInterface
 from resource.view.activator_interface import ActivatorInterface
 from resource.view.checking_interface import CheckingInterface
 from resource.view.standard_interface import StandardInterface
+from resource.view.driver_interface import DriverInterface
+from resource.view.msstore_interface import StoreInterface
 
 class Widget(QFrame):
 
@@ -39,8 +41,11 @@ class Window(MSFluentWindow):
         self.standardInterface = StandardInterface(self)
         self.standardInterface.setObjectName('Standard')
         
-        self.driverInterface = Widget('Driver Install', self)
-        self.storeInterface = Widget('MS Store', self)
+        self.driverInterface = DriverInterface(self)
+        self.driverInterface.setObjectName('Driver Install')
+        
+        self.storeInterface = StoreInterface(self)
+        self.storeInterface.setObjectName('MS Store')
         
         self.settingInterface = SettingInterface(self)
         self.settingInterface.setObjectName('Setting')
