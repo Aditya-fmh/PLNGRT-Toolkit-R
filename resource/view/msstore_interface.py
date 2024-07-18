@@ -44,6 +44,13 @@ class StoreInterface(ScrollArea):
         )
         
         self.aloneGroup = SettingCardGroup(self.tr('Standalone Install (Optional)'), self.scrollWidget)
+        self.reqCard = PrimaryPushSettingCard(
+            self.tr('Install'),
+            FIF.APPLICATION,
+            self.tr('Requirement'),
+            self.tr('Install this first if you are gonna use standalone installer'),
+            self.aloneGroup
+        )
         self.calcCard = PrimaryPushSettingCard(
             self.tr('Install'),
             FIF.CALENDAR,
@@ -127,6 +134,7 @@ class StoreInterface(ScrollArea):
         # add cards to group
         self.mstoreGroup.addSettingCard(self.mstoreCard)
         
+        self.aloneGroup.addSettingCard(self.reqCard)
         self.aloneGroup.addSettingCard(self.calcCard)
         self.aloneGroup.addSettingCard(self.cameraCard)
         self.aloneGroup.addSettingCard(self.paintCard)

@@ -60,16 +60,6 @@ class SettingInterface(ScrollArea):
             self.personalGroup
         )
 
-        # update software
-        self.updateSoftwareGroup = SettingCardGroup(self.tr("Software update"), self.scrollWidget)
-        self.updateOnStartUpCard = SwitchSettingCard(
-            FIF.UPDATE,
-            self.tr('Check for updates when the application starts'),
-            self.tr('The new version will be more stable and have more features'),
-            configItem=cfg.checkUpdateAtStartUp,
-            parent=self.updateSoftwareGroup
-        )
-
         # application
         self.aboutGroup = SettingCardGroup(self.tr('About'), self.scrollWidget)
         self.codeCard = PrimaryPushSettingCard(
@@ -77,21 +67,6 @@ class SettingInterface(ScrollArea):
             FIF.GITHUB,
             self.tr('Source Code'),
             self.tr('See the source code of this application'),
-            self.aboutGroup
-        )
-        self.feedbackCard = PrimaryPushSettingCard(
-            self.tr('Provide feedback'),
-            FIF.FEEDBACK,
-            self.tr('Provide feedback'),
-            self.tr('Help me improve this app by providing feedback'),
-            self.aboutGroup
-        )
-        self.aboutCard = PrimaryPushSettingCard(
-            self.tr('Check update'),
-            FIF.INFO,
-            self.tr('About'),
-            '© ' + self.tr('Copyright') + f" {YEAR}, {AUTHOR}. " +
-            self.tr('Version') + f" {VERSION}",
             self.aboutGroup
         )
 
@@ -118,17 +93,12 @@ class SettingInterface(ScrollArea):
         self.personalGroup.addSettingCard(self.themeCard)
         self.personalGroup.addSettingCard(self.themeColorCard)
 
-        self.updateSoftwareGroup.addSettingCard(self.updateOnStartUpCard)
-
         self.aboutGroup.addSettingCard(self.codeCard)
-        self.aboutGroup.addSettingCard(self.feedbackCard)
-        self.aboutGroup.addSettingCard(self.aboutCard)
 
         # add setting card group to layout
         self.expandLayout.setSpacing(28)
         self.expandLayout.setContentsMargins(60, 10, 60, 0)
         self.expandLayout.addWidget(self.personalGroup)
-        self.expandLayout.addWidget(self.updateSoftwareGroup)
         self.expandLayout.addWidget(self.aboutGroup)
 
     def __setQss(self):
@@ -166,8 +136,5 @@ class SettingInterface(ScrollArea):
         self.themeColorCard.colorChanged.connect(setThemeColor)
 
         # about
-        self.aboutCard.clicked.connect(self.checkUpdateSig)
         self.codeCard.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(CODE_URL)))
-        self.feedbackCard.clicked.connect(
-            lambda: QDesktopServices.openUrl(QUrl(FEEDBACK_URL)))

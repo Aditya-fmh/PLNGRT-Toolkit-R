@@ -11,6 +11,7 @@ import sys
 import subprocess
 import zipfile
 import tempfile
+import threading
 
 def get_resource_path(relative_path):
     """ Get the absolute path to the resource, works for dev and for PyInstaller """
@@ -177,16 +178,20 @@ class CheckingInterface(ScrollArea):
     # checking button action
     def extract_and_run_battery(self):
         """ Extract and run the battery check executable """
-        zip_path = get_resource_path('resource/checking/batteryinfoview.zip')
-        
-        # Create a temporary directory
-        with tempfile.TemporaryDirectory() as temp_dir:
-            # Extract the zip file to the temporary directory
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                zip_ref.extractall(temp_dir)
+        def run_battery_check():
+            zip_path = get_resource_path('resource/checking/batteryinfoview.zip')
             
-            exe_path = os.path.join(temp_dir, 'BatteryInfoView.exe')
-            subprocess.run([exe_path], check=True)
+            # Create a temporary directory
+            with tempfile.TemporaryDirectory() as temp_dir:
+                # Extract the zip file to the temporary directory
+                with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                    zip_ref.extractall(temp_dir)
+                
+                exe_path = os.path.join(temp_dir, 'BatteryInfoView.exe')
+                subprocess.run([exe_path], check=True)
+        
+        # Run the battery check in a separate thread
+        threading.Thread(target=run_battery_check).start()
             
     def run_cpuz(self):
         """ Run the CPU-Z executable """
@@ -249,5 +254,4 @@ class CheckingInterface(ScrollArea):
         self.micCard.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(MICTEST_URL)))
         self.speakerCard.clicked.connect(
-            lambda: QDesktopServices.openUrl(QUrl(SPEAKERTEST_URL)))
-        
+            lambda: QDesktopServices.openUrl(QUrl(SPEAKERTEST_URL))) 
