@@ -1,5 +1,7 @@
 __pycache__/
 
 resource/checking/
+resource/driver/
 resource/script/
+resource/standard/
 resource/tool/
