@@ -148,7 +148,7 @@ class StandardInterface(ScrollArea):
         )
         self.qcpuCard = PrimaryPushSettingCard(
             self.tr('Install'),
-            FIF.MUSIC,
+            FIF.SPEED_HIGH,
             self.tr('QuickCPU'),
             self.tr('Use this to fix CPU throttling'),
             self.commonGroup
