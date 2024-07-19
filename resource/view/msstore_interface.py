@@ -1,21 +1,13 @@
 # coding:utf-8
-from config import cfg, KEYTEST_URL, LCDTEST_URL, MICTEST_URL, SPEAKERTEST_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
-from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, OptionsSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea, ExpandLayout, Theme, InfoBar, CustomColorSettingCard,
-                            setTheme, setThemeColor, isDarkTheme)
-from qfluentwidgets import (FluentIcon as FIF, MessageBox, AvatarWidget, CaptionLabel, HyperlinkButton, QColor, BodyLabel, setFont, RoundMenu, Action,)
-from PyQt5.QtCore import Qt, pyqtSignal, QUrl
-from PyQt5.QtGui import QDesktopServices
+from config import cfg
+from qfluentwidgets import (SettingCardGroup, PrimaryPushSettingCard, ScrollArea, ExpandLayout, Theme, setTheme, isDarkTheme, FluentIcon as FIF)
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QLabel
-import os
-import sys
-import subprocess
-import zipfile
-import tempfile
+import os, sys, subprocess
 
 def get_resource_path(relative_path):
     """ Get the absolute path to the resource, works for dev and for PyInstaller """
     try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
@@ -24,16 +16,15 @@ def get_resource_path(relative_path):
 
 class StoreInterface(ScrollArea):
     """ MS Store interface """
-
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.scrollWidget = QWidget()
         self.expandLayout = ExpandLayout(self.scrollWidget)
 
-        # setting label
+        # Label
         self.settingLabel = QLabel(self.tr("Microsoft Store Related App"), self)
         
-        # Checking Software
+        # MS Store Group
         self.mstoreGroup = SettingCardGroup(self.tr('Microsoft Store'), self.scrollWidget)
         self.mstoreCard = PrimaryPushSettingCard(
             self.tr('Install'),
@@ -43,6 +34,7 @@ class StoreInterface(ScrollArea):
             self.mstoreGroup
         )
         
+        # Standalone Group
         self.aloneGroup = SettingCardGroup(self.tr('Standalone Install (Optional)'), self.scrollWidget)
         self.reqCard = PrimaryPushSettingCard(
             self.tr('Install'),
@@ -142,20 +134,64 @@ class StoreInterface(ScrollArea):
         self.aloneGroup.addSettingCard(self.photosCard)
         self.aloneGroup.addSettingCard(self.whatsCard)
 
-        # add activator card group to layout
+        # add card group to layout
         self.expandLayout.setSpacing(28)
         self.expandLayout.setContentsMargins(60, 10, 60, 0)
         self.expandLayout.addWidget(self.mstoreGroup)
         self.expandLayout.addWidget(self.aloneGroup)
        
-    # checking button action
-    def run_cpuz(self):
-        """ Run the CPU-Z executable """
-        exe_path = get_resource_path('resource/checking/cpuz/cpuz_x64.exe')
+    # Button Action Goes Here
+    def run_msstore(self):
+        script_path = get_resource_path('resource/msstore/Store/Add-Store.cmd')
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
-        # Run the executable with elevated privileges using nircmd
-        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
         
+    def run_requirement(self):
+        script_path = get_resource_path('resource/msstore/requirement.ps1')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
+        
+    def run_calc(self):
+        script_path = get_resource_path('resource/msstore/install-calculator.ps1')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
+        
+    def run_camera(self):
+        script_path = get_resource_path('resource/msstore/install-camera.ps1')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
+        
+    def run_paint(self):
+        script_path = get_resource_path('resource/msstore/install-paint.ps1')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
+        
+    def run_paint3d(self):
+        script_path = get_resource_path('resource/msstore/install-paint3d.ps1')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
+        
+    def run_photos(self):
+        script_path = get_resource_path('resource/msstore/install-photos.ps1')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
+        
+    def run_whatsapp(self):
+        script_path = get_resource_path('resource/msstore/install-whatsapp.ps1')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
+    
+    # Button Slot Goes Here    
     def __connectSignalToSlot(self):
         """ connect signal to slot """
         cfg.themeChanged.connect(self.__onThemeChanged)
+        
+        self.mstoreCard.clicked.connect(self.run_msstore)
+        
+        self.reqCard.clicked.connect(self.run_requirement)
+        self.calcCard.clicked.connect(self.run_calc)
+        self.cameraCard.clicked.connect(self.run_camera)
+        self.paintCard.clicked.connect(self.run_paint)
+        self.paint3dCard.clicked.connect(self.run_paint3d)
+        self.photosCard.clicked.connect(self.run_photos)
+        self.whatsCard.clicked.connect(self.run_whatsapp)
