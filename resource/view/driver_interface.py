@@ -128,7 +128,7 @@ class DriverInterface(ScrollArea):
         subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
         
     def run_wumt(self):
-        exe_path = get_resource_path('resource/update-driver/wumgr/wumt_x64.exe')
+        exe_path = get_resource_path('resource/update-driver/wumt/wumt_x64.exe')
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
         
