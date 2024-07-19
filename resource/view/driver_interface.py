@@ -1,21 +1,13 @@
 # coding:utf-8
-from config import cfg, KEYTEST_URL, LCDTEST_URL, MICTEST_URL, SPEAKERTEST_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
-from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, OptionsSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea, ExpandLayout, Theme, InfoBar, CustomColorSettingCard,
-                            setTheme, setThemeColor, isDarkTheme)
-from qfluentwidgets import (FluentIcon as FIF, MessageBox, AvatarWidget, CaptionLabel, HyperlinkButton, QColor, BodyLabel, setFont, RoundMenu, Action,)
-from PyQt5.QtCore import Qt, pyqtSignal, QUrl
-from PyQt5.QtGui import QDesktopServices
+from config import cfg
+from qfluentwidgets import (SettingCardGroup, PrimaryPushSettingCard, ScrollArea, ExpandLayout, Theme, setTheme, isDarkTheme, FluentIcon as FIF)
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QLabel
-import os
-import sys
-import subprocess
-import zipfile
-import tempfile
+import os, sys, subprocess
 
 def get_resource_path(relative_path):
     """ Get the absolute path to the resource, works for dev and for PyInstaller """
     try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
@@ -24,16 +16,15 @@ def get_resource_path(relative_path):
 
 class DriverInterface(ScrollArea):
     """ Driver interface """
-
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.scrollWidget = QWidget()
         self.expandLayout = ExpandLayout(self.scrollWidget)
 
-        # setting label
+        # Label
         self.settingLabel = QLabel(self.tr("Driver & Update"), self)
         
-        # Checking Software
+        # Windows Update Group
         self.winupdateGroup = SettingCardGroup(self.tr('Windows Update'), self.scrollWidget)
         self.wumgrCard = PrimaryPushSettingCard(
             self.tr('Run'),
@@ -50,7 +41,7 @@ class DriverInterface(ScrollArea):
             self.winupdateGroup
         )
         
-        # IDM Activator
+        # Driver Update Group
         self.driverGroup = SettingCardGroup(self.tr('Driver Update'), self.scrollWidget)
         self.drvboosterCard = PrimaryPushSettingCard(
             self.tr('Run'),
@@ -60,18 +51,19 @@ class DriverInterface(ScrollArea):
             self.driverGroup
         )
         
+        # Extra Driver Group
         self.extraGroup = SettingCardGroup(self.tr('Extra Driver'), self.scrollWidget)
         self.hpfnCard = PrimaryPushSettingCard(
             self.tr('Install'),
             FIF.UPDATE,
-            self.tr('HP Fn Key'),
+            self.tr('HP Fn Key Driver'),
             self.tr('Enable Function key for some HP laptops'),
             self.driverGroup
         )
         self.t440Card = PrimaryPushSettingCard(
             self.tr('Install'),
             FIF.UPDATE,
-            self.tr('T440p Camera'),
+            self.tr('T440p Camera Driver'),
             self.tr('This will fix T440p bluescreen when opening camera'),
             self.driverGroup
         )
@@ -122,21 +114,48 @@ class DriverInterface(ScrollArea):
         self.extraGroup.addSettingCard(self.hpfnCard)
         self.extraGroup.addSettingCard(self.t440Card)
 
-        # add activator card group to layout
+        # add card group to layout
         self.expandLayout.setSpacing(28)
         self.expandLayout.setContentsMargins(60, 10, 60, 0)
         self.expandLayout.addWidget(self.winupdateGroup)
         self.expandLayout.addWidget(self.driverGroup)
         self.expandLayout.addWidget(self.extraGroup)
        
-    # checking button action
-    def run_cpuz(self):
-        """ Run the CPU-Z executable """
-        exe_path = get_resource_path('resource/checking/cpuz/cpuz_x64.exe')
+    # Button Action Goes Here
+    def run_wumgr(self):
+        exe_path = get_resource_path('resource/update-driver/wumgr/wumgr.exe')
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
-        # Run the executable with elevated privileges using nircmd
         subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
         
+    def run_wumt(self):
+        exe_path = get_resource_path('resource/update-driver/wumgr/wumt_x64.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_drvbooster(self):
+        exe_path = get_resource_path('resource/update-driver/DriverBoosterPortable/DriverBoosterPortable.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_hpfnkey(self):
+        exe_path = get_resource_path('resource/update-driver/hp_fn_key.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_t440drv(self):
+        exe_path = get_resource_path('resource/update-driver/t440p_camera.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+    
+    # Button Slot Goes Here    
     def __connectSignalToSlot(self):
         """ connect signal to slot """
         cfg.themeChanged.connect(self.__onThemeChanged)
+        
+        self.wumgrCard.clicked.connect(self.run_wumgr)
+        self.wumtCard.clicked.connect(self.run_wumt)
+        
+        self.drvboosterCard.clicked.connect(self.run_drvbooster)
+        
+        self.hpfnCard.clicked.connect(self.run_hpfnkey)
+        self.t440Card.clicked.connect(self.run_t440drv)

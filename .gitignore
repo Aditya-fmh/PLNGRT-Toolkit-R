@@ -1,7 +1,7 @@
 __pycache__/
 
 resource/checking/
-resource/driver/
+resource/update-driver/
 resource/msstore/
 resource/script/
 resource/standard/
