@@ -47,7 +47,7 @@ class DriverInterface(ScrollArea):
             self.tr('Run'),
             FIF.UPDATE,
             self.tr('Driver Booster (Recommended)'),
-            self.tr('This only install missing/outdated driver'),
+            self.tr('Need to install Visual C++ if its not opening'),
             self.driverGroup
         )
         
