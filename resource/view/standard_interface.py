@@ -1,21 +1,14 @@
 # coding:utf-8
 from config import cfg, KEYTEST_URL, LCDTEST_URL, MICTEST_URL, SPEAKERTEST_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
-from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, OptionsSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea, ExpandLayout, Theme, InfoBar, CustomColorSettingCard,
-                            setTheme, setThemeColor, isDarkTheme)
-from qfluentwidgets import (FluentIcon as FIF, MessageBox, AvatarWidget, CaptionLabel, HyperlinkButton, QColor, BodyLabel, setFont, RoundMenu, Action,)
-from PyQt5.QtCore import Qt, pyqtSignal, QUrl
-from PyQt5.QtGui import QDesktopServices
+from qfluentwidgets import (SettingCardGroup, PrimaryPushSettingCard, ScrollArea, ExpandLayout, Theme,
+                            setTheme, isDarkTheme, FluentIcon as FIF)
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QLabel
-import os
-import sys
-import subprocess
-import zipfile
-import tempfile
+import os, sys, subprocess
 
 def get_resource_path(relative_path):
     """ Get the absolute path to the resource, works for dev and for PyInstaller """
     try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
@@ -30,10 +23,10 @@ class StandardInterface(ScrollArea):
         self.scrollWidget = QWidget()
         self.expandLayout = ExpandLayout(self.scrollWidget)
 
-        # setting label
+        # Standard Apps label
         self.settingLabel = QLabel(self.tr("Standard Apps"), self)
         
-        # Checking Software
+        # Essential Software Group
         self.essentialGroup = SettingCardGroup(self.tr('System Essential Apps'), self.scrollWidget)
         self.dx11Card = PrimaryPushSettingCard(
             self.tr('Install'),
@@ -64,7 +57,7 @@ class StandardInterface(ScrollArea):
             self.essentialGroup
         )
         
-        # IDM Activator
+        # Common Apps Group
         self.commonGroup = SettingCardGroup(self.tr('Common Apps'), self.scrollWidget)
         self.aimpCard = PrimaryPushSettingCard(
             self.tr('Install'),
@@ -83,7 +76,7 @@ class StandardInterface(ScrollArea):
         self.capcutCard = PrimaryPushSettingCard(
             self.tr('Install'),
             FIF.VIDEO,
-            self.tr('Capcut'),
+            self.tr('Capcut (Online Installer)'),
             self.tr('Some Video Editor'),
             self.commonGroup
         )
@@ -144,13 +137,20 @@ class StandardInterface(ScrollArea):
             self.commonGroup
         )
 
-        # IDM Activator
+        # Extra Apps Group
         self.extraGroup = SettingCardGroup(self.tr('Extra Apps'), self.scrollWidget)
         self.idmCard = PrimaryPushSettingCard(
             self.tr('Install'),
             FIF.DOWNLOAD,
             self.tr('Internet Download Manager'),
             self.tr('Some Downloader App'),
+            self.commonGroup
+        )
+        self.qcpuCard = PrimaryPushSettingCard(
+            self.tr('Install'),
+            FIF.MUSIC,
+            self.tr('QuickCPU'),
+            self.tr('Use this to fix CPU throttling'),
             self.commonGroup
         )
         self.spotxCard = PrimaryPushSettingCard(
@@ -217,23 +217,129 @@ class StandardInterface(ScrollArea):
         self.commonGroup.addSettingCard(self.zoomCard)
         
         self.extraGroup.addSettingCard(self.idmCard)
+        self.extraGroup.addSettingCard(self.qcpuCard)
         self.extraGroup.addSettingCard(self.spotxCard)
 
-        # add activator card group to layout
+        # add card group to layout
         self.expandLayout.setSpacing(28)
         self.expandLayout.setContentsMargins(60, 10, 60, 0)
         self.expandLayout.addWidget(self.essentialGroup)
         self.expandLayout.addWidget(self.commonGroup)
         self.expandLayout.addWidget(self.extraGroup)
        
-    # checking button action
-    def run_cpuz(self):
-        """ Run the CPU-Z executable """
-        exe_path = get_resource_path('resource/checking/cpuz/cpuz_x64.exe')
+    # Button Action Goes Here
+    def run_dx11(self):
+        exe_path = get_resource_path('resource/standard/dx11.exe')
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
-        # Run the executable with elevated privileges using nircmd
         subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
         
+    def run_dx12(self):
+        exe_path = get_resource_path('resource/standard/DX12/DXSETUP.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_vcr(self):
+        exe_path = get_resource_path('resource/standard/vcpp.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_webview(self):
+        exe_path = get_resource_path('resource/standard/webview2.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_aimp(self):
+        exe_path = get_resource_path('resource/standard/aimp.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_canva(self):
+        exe_path = get_resource_path('resource/standard/canva.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_capcut(self):
+        exe_path = get_resource_path('resource/standard/capcut.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_chrome(self):
+        exe_path = get_resource_path('resource/standard/chrome.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_firefox(self):
+        exe_path = get_resource_path('resource/standard/firefox.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_nitro(self):
+        exe_path = get_resource_path('resource/standard/nitro.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_telegram(self):
+        exe_path = get_resource_path('resource/standard/telegram.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_vlc(self):
+        exe_path = get_resource_path('resource/standard/vlc.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_wincd(self):
+        exe_path = get_resource_path('resource/standard/wincdemu.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_winrar(self):
+        exe_path = get_resource_path('resource/standard/winrar.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_zoom(self):
+        exe_path = get_resource_path('resource/standard/zoom.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_idm(self):
+        exe_path = get_resource_path('resource/standard/idm.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_qcpu(self):
+        exe_path = get_resource_path('resource/standard/quickcpu.exe')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
+        
+    def run_spotx(self):
+        script_path = get_resource_path('resource/standard/spotx.bat')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
+    
+    # Button Slot Goes Here    
     def __connectSignalToSlot(self):
         """ connect signal to slot """
         cfg.themeChanged.connect(self.__onThemeChanged)
+        
+        self.dx11Card.clicked.connect(self.run_dx11)
+        self.dx12Card.clicked.connect(self.run_dx12)
+        self.vcrCard.clicked.connect(self.run_vcr)
+        self.webviewCard.clicked.connect(self.run_webview)
+        
+        self.aimpCard.clicked.connect(self.run_aimp)
+        self.canvaCard.clicked.connect(self.run_canva)
+        self.capcutCard.clicked.connect(self.run_capcut)
+        self.chromeCard.clicked.connect(self.run_chrome)
+        self.firefoxCard.clicked.connect(self.run_firefox)
+        self.nitroCard.clicked.connect(self.run_nitro)
+        self.telegramCard.clicked.connect(self.run_telegram)
+        self.vlcCard.clicked.connect(self.run_vlc)
+        self.cdemuCard.clicked.connect(self.run_wincd)
+        self.rarCard.clicked.connect(self.run_winrar)
+        self.zoomCard.clicked.connect(self.run_zoom)
+        
+        self.idmCard.clicked.connect(self.run_idm)
+        self.qcpuCard.clicked.connect(self.run_qcpu)
+        self.spotxCard.clicked.connect(self.run_spotx)
