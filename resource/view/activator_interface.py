@@ -134,7 +134,7 @@ class ActivatorInterface(ScrollArea):
     def runAIO(self):
         script_path = get_resource_path('resource/script/aio.cmd')
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
-        subprocess.run([script_path], shell=True)
+        subprocess.run([nircmd_path, 'elevate', 'cmd.exe', '/c', script_path], shell=True)
         
     def runIDM(self):
         powershell_command = 'irm https://massgrave.dev/ias | iex'
