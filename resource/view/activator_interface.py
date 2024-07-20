@@ -133,6 +133,7 @@ class ActivatorInterface(ScrollArea):
     # activator button action
     def runAIO(self):
         script_path = get_resource_path('resource/script/aio.cmd')
+        nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([script_path], shell=True)
         
     def runIDM(self):

@@ -6,3 +6,5 @@ resource/msstore/
 resource/script/
 resource/standard/
 resource/tool/
+dist/
+build/
