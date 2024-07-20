@@ -1,12 +1,8 @@
 
-![Logo](https://i.imgur.com/8aQcNkU.png)
+![Logo](https://i.imgur.com/iDyaeKy.png)
 
 
-![GitHub Created At](https://img.shields.io/github/created-at/aditya-fmh/PLNGRT-Toolkit-R)
-
-![GitHub last commit](https://img.shields.io/github/last-commit/aditya-fmh/PLNGRT-Toolkit-R)
-
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/PyQt-Fluent-Widgets?link=https%3A%2F%2Fpypi.org%2Fproject%2FPyQt-Fluent-Widgets%2F)
+![GitHub Created At](https://img.shields.io/github/created-at/aditya-fmh/PLNGRT-Toolkit-R) [GitHub last commit](https://img.shields.io/github/last-commit/aditya-fmh/PLNGRT-Toolkit-R) [PyPI - Python Version](https://img.shields.io/pypi/pyversions/PyQt-Fluent-Widgets?link=https%3A%2F%2Fpypi.org%2Fproject%2FPyQt-Fluent-Widgets%2F)
 
 
 # PLNGRT Toolkit R
