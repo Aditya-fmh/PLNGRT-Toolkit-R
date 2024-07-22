@@ -1,6 +1,6 @@
 # coding:utf-8
 from config import cfg
-from qfluentwidgets import (SettingCardGroup, PrimaryPushSettingCard, ScrollArea, ExpandLayout, Theme, setTheme, isDarkTheme, FluentIcon as FIF)
+from qfluentwidgets import (SettingCardGroup, PrimaryPushSettingCard, PrimarySplitPushButton, ScrollArea, ExpandLayout, Theme, setTheme, isDarkTheme, FluentIcon as FIF)
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QLabel
 import os, sys, subprocess
