@@ -156,7 +156,7 @@ class StandardInterface(ScrollArea):
         self.spotxCard = PrimaryPushSettingCard(
             self.tr('Install'),
             FIF.MUSIC,
-            self.tr('SpotX (Spotify)'),
+            self.tr('SpotX (Spotify) Online Installer'),
             self.tr('Some Online Music Player'),
             self.commonGroup
         )

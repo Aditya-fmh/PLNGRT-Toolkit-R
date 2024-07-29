@@ -1,5 +1,5 @@
 # coding:utf-8
-import sys
+import sys, os
 
 from PyQt5.QtCore import Qt, QUrl, QEventLoop, QTimer, QSize
 from PyQt5.QtGui import QIcon, QDesktopServices
@@ -65,7 +65,11 @@ class Window(MSFluentWindow):
 
     def initWindow(self):
         self.resize(900, 700)
-        self.setWindowIcon(QIcon('resource/icon2.ico'))
+        if hasattr(sys, '_MEIPASS'):
+            icon_path = os.path.join(sys._MEIPASS, 'resource', 'icon2.ico')
+        else:
+            icon_path = os.path.join(os.path.dirname(__file__), 'resource', 'icon2.ico')
+        self.setWindowIcon(QIcon(icon_path))
         self.setWindowTitle('PLNGRT Toolkit R')
 
         desktop = QApplication.desktop().availableGeometry()

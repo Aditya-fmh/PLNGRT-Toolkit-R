@@ -16,6 +16,7 @@ a = Analysis(
         ('config.py', '.'),  # Include config.py in the root of the dist folder
         ('resource', 'resource'),  # Include the entire resource folder
         ('config', 'config'),  # Include the entire config folder
+        ('resource/icon2.ico', 'resource'),
     ],
     hiddenimports=[
         'scipy._lib._util',  # Add hidden imports here
@@ -60,5 +61,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='main'
+    name='toolkit'
 )
