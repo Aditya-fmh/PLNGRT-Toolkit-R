@@ -1,6 +1,3 @@
-
-![Logo](https://i.imgur.com/iDyaeKy.png)
-
 # PLNGRT Toolkit R
 
 This app is a remake from [older toolkit](https://github.com/Aditya-fmh/plngrt-toolkit). Bringing fresh & modern UI using PyQt5 and [QFluentWidgets](https://qfluentwidgets.com/). This app functionality is similar to [Ninite](https://ninite.com/) but instead of require internet, this app can run normally while offline. Some option still need internet connection since it doesnt have offline installer or it just rely on internet.
