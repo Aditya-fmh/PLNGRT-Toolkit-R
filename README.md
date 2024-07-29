@@ -27,7 +27,8 @@ This app is a remake from [older toolkit](https://github.com/Aditya-fmh/plngrt-t
 ## Installation
 
 Download from mirror link below.
-- GoFile: https://gofile.io/d/HtZUIf
+- GoFile: [Download](https://gofile.io/d/HtZUIf)
+- MediaFire: [Download](https://www.mediafire.com/file/4hy0qr9q7yb237z/PLNGRT_Toolkit_R.zip/file)
 
 After downloading the file, just extract it to desired location with WinRAR or 7zip
     
