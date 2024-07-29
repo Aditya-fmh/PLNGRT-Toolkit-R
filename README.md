@@ -26,9 +26,10 @@ This app is a remake from [older toolkit](https://github.com/Aditya-fmh/plngrt-t
 
 ## Installation
 
-Download from Github latest release or from mirror.
-- Github Download
-- Mirror Download
+Download from mirror link below.
+- GoFile: https://gofile.io/d/HtZUIf
+
+After downloading the file, just extract it to desired location with WinRAR or 7zip
     
 ## Tech Stack
 
