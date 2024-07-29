@@ -50,7 +50,7 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=True,  # Set to False if you don't want a console window
+    console=False,  # Set to False if you don't want a console window
     icon=get_resource_path('resource/icon2.ico')  # Specify your icon file here
 )
 coll = COLLECT(

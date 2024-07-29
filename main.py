@@ -1,5 +1,12 @@
 # coding:utf-8
-import sys, os
+import sys
+import os
+
+# Redirect stdout and stderr to a log file
+log_file_path = os.path.join(os.path.dirname(__file__), 'output.log')
+log_file = open(log_file_path, 'w')
+sys.stdout = log_file
+sys.stderr = log_file
 
 from PyQt5.QtCore import Qt, QUrl, QEventLoop, QTimer, QSize
 from PyQt5.QtGui import QIcon, QDesktopServices
@@ -93,7 +100,6 @@ class Window(MSFluentWindow):
         if w.exec():
             QDesktopServices.openUrl(QUrl("https://github.com/Aditya-fmh"))
 
-
 if __name__ == '__main__':
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
@@ -105,3 +111,4 @@ if __name__ == '__main__':
     w = Window()
     w.show()
     app.exec_()
+    log_file.close()  # Ensure the log file is closed when the application exits
