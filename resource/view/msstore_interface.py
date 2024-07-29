@@ -148,10 +148,23 @@ class StoreInterface(ScrollArea):
         
     def run_requirement(self):
         commands = [
-            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/req1.Appx')),
-            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/req2.Appx')),
-            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/req3.Appx')),
-            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/req4.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Framework.1.3_1.3.24211.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Framework.1.6_1.6.27413.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Framework.1.7_1.7.27413.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Runtime.1.3_1.3.23901.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Runtime.1.4_1.4.24201.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Runtime.1.6_1.6.24903.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Runtime.1.7_1.7.27422.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.Services.Store.Engagement_10.0.23012.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.UI.Xaml.2.0_2.1810.18004.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.UI.Xaml.2.1_2.11906.6001.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.UI.Xaml.2.4_2.42007.9001.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.UI.Xaml.2.7_7.2208.15002.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.UI.Xaml.2.8_8.2310.30001.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Requirement/Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe.Appx')),
         ]
         combined_command = '; '.join(commands)
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
