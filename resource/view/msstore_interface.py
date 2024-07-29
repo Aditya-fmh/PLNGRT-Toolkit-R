@@ -148,42 +148,42 @@ class StoreInterface(ScrollArea):
         
     def run_requirement(self):
         commands = [
-            'Add-AppxPackage -Path "resource/msstore/Appx/req1.Appx"',
-            'Add-AppxPackage -Path "resource/msstore/Appx/req2.Appx"',
-            'Add-AppxPackage -Path "resource/msstore/Appx/req3.Appx"',
-            'Add-AppxPackage -Path "resource/msstore/Appx/req4.Appx"',
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/req1.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/req2.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/req3.Appx')),
+            'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/req4.Appx')),
         ]
         combined_command = '; '.join(commands)
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', 'powershell', '-Command', combined_command], shell=True)
         
     def run_calc(self):
-        command = 'Add-AppxPackage -Path "resource/msstore/Appx/calculator.Msixbundle"'
+        command = 'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/calculator.Msixbundle'))
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', 'powershell', '-Command', command], shell=True)
         
     def run_camera(self):
-        command = 'Add-AppxPackage -Path "resource/msstore/Appx/camera.Msixbundle"'
+        command = 'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/camera.Msixbundle'))
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', 'powershell', '-Command', command], shell=True)
         
     def run_paint(self):
-        command = 'Add-AppxPackage -Path "resource/msstore/Appx/paint.Msixbundle"'
+        command = 'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/paint.Msixbundle'))
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', 'powershell', '-Command', command], shell=True)
         
     def run_paint3d(self):
-        command = 'Add-AppxPackage -Path "resource/msstore/Appx/paint3d.appxbundle"'
+        command = 'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/paint3d.appxbundle'))
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', 'powershell', '-Command', command], shell=True)
         
     def run_photos(self):
-        command = 'Add-AppxPackage -Path "resource/msstore/Appx/photos.Msixbundle"'
+        command = 'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/photos.Msixbundle'))
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', 'powershell', '-Command', command], shell=True)
         
     def run_whatsapp(self):
-        command = 'Add-AppxPackage -Path "resource/msstore/Appx/whatsapp.Msixbundle"'
+        command = 'Add-AppxPackage -Path "{}"'.format(get_resource_path('resource/msstore/Appx/whatsapp.Msixbundle'))
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', 'powershell', '-Command', command], shell=True)
     
