@@ -20,6 +20,7 @@ from resource.view.checking_interface import CheckingInterface
 from resource.view.standard_interface import StandardInterface
 from resource.view.driver_interface import DriverInterface
 from resource.view.msstore_interface import StoreInterface
+from resource.view.extra_interface import ExtraInterface
 
 class Widget(QFrame):
 
@@ -54,6 +55,9 @@ class Window(MSFluentWindow):
         self.storeInterface = StoreInterface(self)
         self.storeInterface.setObjectName('MS Store')
         
+        self.extraInterface = ExtraInterface(self)
+        self.extraInterface.setObjectName('Extra Tweak')
+        
         self.settingInterface = SettingInterface(self)
         self.settingInterface.setObjectName('Setting')
 
@@ -66,6 +70,7 @@ class Window(MSFluentWindow):
         self.addSubInterface(self.standardInterface, FIF.APPLICATION, 'Standard')
         self.addSubInterface(self.storeInterface, FIF.SHOPPING_CART, 'MS Store')
         self.addSubInterface(self.driverInterface, FIF.UPDATE, 'Driver Install')
+        self.addSubInterface(self.extraInterface, FIF.DEVELOPER_TOOLS, 'Extra Tweaks')
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Setting', FIF.SETTING, NavigationItemPosition.BOTTOM)
         self.navigationInterface.setCurrentItem(self.activatorInterface.objectName())

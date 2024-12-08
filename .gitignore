@@ -8,3 +8,4 @@ resource/standard/
 resource/tool/
 dist/
 build/
+output.log

@@ -284,7 +284,7 @@ class StandardInterface(ScrollArea):
         subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
         
     def run_vlc(self):
-        exe_path = get_resource_path('resource/standard/vlc.exe')
+        exe_path = get_resource_path('resource/standard/vlc-3.0.21-win64.exe')
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
         
