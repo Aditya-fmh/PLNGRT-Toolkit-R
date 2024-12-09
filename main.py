@@ -10,7 +10,7 @@ sys.stderr = log_file
 
 from PyQt5.QtCore import Qt, QUrl, QEventLoop, QTimer, QSize
 from PyQt5.QtGui import QIcon, QDesktopServices
-from PyQt5.QtWidgets import QApplication, QFrame, QHBoxLayout
+from PyQt5.QtWidgets import QApplication, QFrame, QHBoxLayout, QDialog
 from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, MSFluentWindow,
                             SubtitleLabel, setFont)
 from qfluentwidgets import (FluentIcon as FIF, SplashScreen)
@@ -21,6 +21,7 @@ from resource.view.standard_interface import StandardInterface
 from resource.view.driver_interface import DriverInterface
 from resource.view.msstore_interface import StoreInterface
 from resource.view.extra_interface import ExtraInterface
+from login_window import LoginWindow
 
 class Widget(QFrame):
 
@@ -113,7 +114,11 @@ if __name__ == '__main__':
     setTheme(Theme.DARK)
 
     app = QApplication(sys.argv)
-    w = Window()
-    w.show()
-    app.exec_()
+
+    login = LoginWindow()
+    if login.exec_() == QDialog.Accepted:
+        w = Window()
+        w.show()
+        app.exec_()
+
     log_file.close()  # Ensure the log file is closed when the application exits
