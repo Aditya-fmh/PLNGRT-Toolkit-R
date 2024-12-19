@@ -21,7 +21,6 @@ from resource.view.standard_interface import StandardInterface
 from resource.view.driver_interface import DriverInterface
 from resource.view.msstore_interface import StoreInterface
 from resource.view.extra_interface import ExtraInterface
-from login_window import LoginWindow
 
 class Widget(QFrame):
 
@@ -71,7 +70,7 @@ class Window(MSFluentWindow):
         self.addSubInterface(self.standardInterface, FIF.APPLICATION, 'Standard')
         self.addSubInterface(self.storeInterface, FIF.SHOPPING_CART, 'MS Store')
         self.addSubInterface(self.driverInterface, FIF.UPDATE, 'Driver Install')
-        self.addSubInterface(self.extraInterface, FIF.DEVELOPER_TOOLS, 'Extra Tweaks')
+        self.addSubInterface(self.extraInterface, FIF.DEVELOPER_TOOLS, 'Extra')
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Setting', FIF.SETTING, NavigationItemPosition.BOTTOM)
         self.navigationInterface.setCurrentItem(self.activatorInterface.objectName())
@@ -94,18 +93,6 @@ class Window(MSFluentWindow):
         QTimer.singleShot(3000, loop.quit)
         loop.exec()
 
-    def showMessageBox(self):
-        w = MessageBox(
-            'About',
-            'This app is a remake from old toolkit which using Tkinter as its GUI, now this app is made with PyQt5 and QFluentWidgets',
-            self
-        )
-        w.yesButton.setText('Github Page')
-        w.cancelButton.setText('Back')
-
-        if w.exec():
-            QDesktopServices.openUrl(QUrl("https://github.com/Aditya-fmh"))
-
 if __name__ == '__main__':
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
@@ -115,10 +102,9 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
 
-    login = LoginWindow()
-    if login.exec_() == QDialog.Accepted:
-        w = Window()
-        w.show()
-        app.exec_()
+    # Directly instantiate the Window class
+    w = Window()
+    w.show()
+    app.exec_()
 
     log_file.close()  # Ensure the log file is closed when the application exits

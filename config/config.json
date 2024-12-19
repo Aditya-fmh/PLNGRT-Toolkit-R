@@ -1,7 +1,4 @@
 {
-    "Update": {
-        "CheckUpdateAtStartUp": false
-    },
     "MainWindow": {
         "DpiScale": "Auto",
         "EnableAcrylicBackground": false,

@@ -259,7 +259,7 @@ class StandardInterface(ScrollArea):
         subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
         
     def run_capcut(self):
-        exe_path = get_resource_path('resource/standard/capcut.exe')
+        exe_path = get_resource_path('resource/standard/capcut_capcutpc_0_1.2.6_installer.exe')
         nircmd_path = get_resource_path('resource/tool/nircmd/nircmd.exe')
         subprocess.run([nircmd_path, 'elevate', exe_path], check=True)
         

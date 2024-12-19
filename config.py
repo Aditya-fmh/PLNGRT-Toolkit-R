@@ -21,10 +21,6 @@ class Config(QConfig):
     dpiScale = OptionsConfigItem(
         "MainWindow", "DpiScale", "Auto", OptionsValidator([1, 1.25, 1.5, 1.75, 2, "Auto"]), restart=True)
 
-    # software update
-    checkUpdateAtStartUp = ConfigItem(
-        "Update", "CheckUpdateAtStartUp", True, BoolValidator())
-
 YEAR = 2024
 AUTHOR = "Aditya F"
 VERSION = __version__
